@@ -197,6 +197,13 @@ class VoucherController extends Controller
                 ], 404);
             }
 
+            if ($voucher->status == '0') {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Voucher not active',
+                ], 404);
+            }
+
             if ($voucher->expired > now()) {
                 return response()->json([
                     'success' => false,
